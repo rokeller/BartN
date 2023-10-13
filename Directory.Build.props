@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project>
+    <PropertyGroup>
+        <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+        <Nullable>enable</Nullable>
+        <LibraryTargetFrameworks>net6.0;net7.0</LibraryTargetFrameworks>
+        <ToolTargetFrameworks>net6.0;net7.0</ToolTargetFrameworks>
+        <TestTargetFrameworks>net6.0;net7.0</TestTargetFrameworks>
+        <VersionPrefix>0.1</VersionPrefix>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+
+        <ContinuousIntegrationBuild Condition="'$(CI)' == 'true'">true</ContinuousIntegrationBuild>
+        <ContinuousIntegrationBuild Condition="'$(BUILD_REASON)' != ''">true</ContinuousIntegrationBuild>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(ContinuousIntegrationBuild)' == 'true'">
+        <RestoreLockedMode>true</RestoreLockedMode>
+    </PropertyGroup>
+
+    <ItemGroup Label="NuSpec">
+        <!-- <None Include="..\..\icon.png" Pack="true" PackagePath="\" Visible="false" /> -->
+        <None Include="$(MSBuildThisFileDirectory)docs/README.md" Pack="true" PackagePath="\"/>
+    </ItemGroup>
+</Project>

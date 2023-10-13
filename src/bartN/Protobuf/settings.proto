@@ -1,0 +1,8 @@
+syntax = "proto2";
+package domain;
+
+option csharp_namespace = "BartN.Domain";
+
+message Settings {
+    required bytes salt = 1;
+}

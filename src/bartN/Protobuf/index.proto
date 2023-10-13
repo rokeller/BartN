@@ -1,0 +1,9 @@
+syntax = "proto2";
+package domain;
+
+option csharp_namespace = "BartN.Domain";
+
+message IndexEntry {
+    required string relPath = 1;
+    required int64 lastModified = 2;
+}

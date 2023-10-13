@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>$(LibraryTargetFrameworks)</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BouncyCastle.Cryptography" Version="2.*"/>
+    <PackageReference Include="Google.Protobuf" Version="3.*"/>
+  </ItemGroup>
+
+  <Target Name="GenerateProtobufClasses" BeforeTargets="Build;Compile">
+    <Message Importance="High" Text="LibraryTargetFrameworks = $(LibraryTargetFrameworks)" />
+    <PropertyGroup>
+      <ProtocPath>protoc</ProtocPath>
+      <ProtocCmd>$(ProtocPath) -I=Protobuf --csharp_opt=file_extension=.g.cs --csharp_out=Protobuf Protobuf/*.proto</ProtocCmd>
+    </PropertyGroup>
+    <Exec Command="$(ProtocCmd)"/>
+  </Target>
+</Project>
